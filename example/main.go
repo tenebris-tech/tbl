@@ -51,7 +51,7 @@ func main() {
 	// Set TBL endpoint for the specific evidence task
 	e.URL = "https://openapi.tugboatlogic.com/api/v0/evidence/collector/3077/"
 
-	// Set file (full path) and MIME type
+	// Set file (full or relative path) and MIME type
 	e.File = "sample.txt"
 	e.Type = "text/plain"
 
