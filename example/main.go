@@ -14,7 +14,7 @@
 // Note that each TBL Custom Integration can have one or more "Custom Evidence Integration",
 // each of which are associated with a single evidence task and have a unique Collector URL.
 //
-// 	For further information, please see the TBL Evidence API documentation.
+// For further information, please see the TBL Evidence API documentation.
 //
 package main
 
@@ -48,8 +48,10 @@ func main() {
 		log.Fatal(err)
 	}
 
-	// Set remaining information
+	// Set TBL endpoint for the specific evidence task
 	e.URL = "https://openapi.tugboatlogic.com/api/v0/evidence/collector/3077/"
+
+	// Set file (full path) and MIME type
 	e.File = "sample.txt"
 	e.Type = "text/plain"
 
