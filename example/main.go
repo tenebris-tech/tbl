@@ -46,8 +46,8 @@ func main() {
 	err = e.Credentials("http-headers.json")
 	checkError(err)
 
-	// Set TBL endpoint for the specific evidence task
-	e.URL = "https://openapi.tugboatlogic.com/api/v0/evidence/collector/3077/"
+	// Set TBL endpoint for the specific evidence task (must be updated)
+	e.URL = "https://openapi.tugboatlogic.com/api/v0/evidence/collector/xxxx/"
 
 	// Set file (full or relative path) and MIME type
 	e.File = "sample.txt"
