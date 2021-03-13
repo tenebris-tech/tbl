@@ -4,7 +4,7 @@ This repository contains Go modules for working with Tugboat Logic (https://www.
 
 Copyright (c) 2021 Tenebris Technologies Inc.
 
-For custom evidence collection please contact us via https://tenebris.com
+For custom evidence collection software development please contact us via https://tenebris.com
 
 Please see the LICENSE file for licence information.
 
