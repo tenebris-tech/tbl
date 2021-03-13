@@ -44,9 +44,7 @@ func main() {
 
 	// Read TBL credentials from TBL http-headers.json file
 	err = e.Credentials("http-headers.json")
-	if err != nil {
-		log.Fatal(err)
-	}
+	checkError(err)
 
 	// Set TBL endpoint for the specific evidence task
 	e.URL = "https://openapi.tugboatlogic.com/api/v0/evidence/collector/3077/"
@@ -57,9 +55,26 @@ func main() {
 
 	// Upload
 	err = e.Upload()
+	checkError(err)
+
+	// Test .csv
+	e.File = "sample.csv"
+	e.Type = "text/csv"
+	err = e.Upload()
+	checkError(err)
+
+	// Test .jpg
+	e.File = "sample.jpg"
+	e.Type = "image/jpeg"
+	err = e.Upload()
+	checkError(err)
+
+	fmt.Println("Evidence uploaded successfully.")
+}
+
+// Check for error
+func checkError(err error) {
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	fmt.Println("Evidence uploaded successfully.")
 }
