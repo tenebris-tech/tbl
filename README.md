@@ -1,6 +1,7 @@
 # TBL
 
-This repository contains Go modules for working with Tugboat Logic (https://www.tugboatlogic.com/).
+This repository contains Go packages for working with Tugboat Logic (https://www.tugboatlogic.com/) and will be
+extended as new APIs become available. PRs are welcome provided that your contribution is under the MIT license.
 
 Copyright (c) 2021 Tenebris Technologies Inc.
 
@@ -9,6 +10,11 @@ For custom evidence collection software development please contact us via https:
 Please see the LICENSE file for licence information.
 
 For an example of how to use the evidence package, please refer to example/main.go
+
+Please note that the example code uses an evidence package function to load http-headers.json.
+This file can be downloaded from TubBoat Logic when the custom evidence integration is created, and contains
+the required credentials. A separate endpoint (URL) is required for each evidence task, 
+but a single set of credentials can be used. An example of the file is included as example/http-headers-example.json. 
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,

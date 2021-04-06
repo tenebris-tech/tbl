@@ -46,7 +46,7 @@ func main() {
 	err = e.Credentials("http-headers.json")
 	checkError(err)
 
-	// Set TBL endpoint for the specific evidence task (must be updated)
+	// Set TBL endpoint for the specific evidence task (*** MUST BE UPDATED ***)
 	e.URL = "https://openapi.tugboatlogic.com/api/v0/evidence/collector/xxxx/"
 
 	// Set file (full or relative path) and MIME type
