@@ -16,6 +16,8 @@ This file can be downloaded from TubBoat Logic when the custom evidence integrat
 the required credentials. A separate endpoint (URL) is required for each evidence task, 
 but a single set of credentials can be used. An example of the file is included as example/http-headers-example.json. 
 
+**DO NOT** use your personal username and password, only use the credentials provided by TugBoat Logic for the custom integration.
+
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
