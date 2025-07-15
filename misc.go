@@ -1,4 +1,4 @@
-// Copyright (c) 2021 Tenebris Technologies Inc. (https://www.tenebris.com)
+// Copyright (c) 2021-2025 Tenebris Technologies Inc. (https://www.tenebris.com)
 // Use of this source code is governed by the MIT license.
 // Please see the LICENSE for details.
 

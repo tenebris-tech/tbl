@@ -1,4 +1,4 @@
-// Copyright (c) 2021 Tenebris Technologies Inc. (https://www.tenebris.com)
+// Copyright (c) 2021-2025 Tenebris Technologies Inc. (https://www.tenebris.com)
 // Use of this source code is governed by the MIT license.
 // Please see the LICENSE for details.
 
@@ -19,35 +19,48 @@ import (
 	"time"
 )
 
+type Evidence struct {
+	FileName  string
+	FileType  string
+	Collected string
+	URL       string
+}
+
 // Upload uploads a file to one or more TBL evidence task endpoints.
 // The url parameter can contain one or more comma-delimited URLs.
-func (e *TBL) Upload(fileName string, fileType string, url string) error {
+func (e *TBL) Upload(evidence Evidence) error {
 
-	if url == "" {
+	if evidence.URL == "" {
 		return errors.New("TBL evidence task endpoint (URL) must be specified")
 	}
 
 	// Split the URL string into individual URLs
-	urls := splitURLs(url)
+	urls := splitURLs(evidence.URL)
 
 	if e.Debug {
-		log.Printf("[DEBUG] Upload request for file: %s, type: %s", fileName, fileType)
+		log.Printf("[DEBUG] Upload request for file: %s, type: %s", evidence.FileName, evidence.FileType)
 		log.Printf("[DEBUG] Found %d URLs to upload to: %v", len(urls), urls)
 	}
 
-	if fileName == "" {
+	if evidence.FileName == "" {
 		return errors.New("evidence filename must be specified")
 	}
 
-	if fileType == "" {
+	if evidence.FileType == "" {
 		return errors.New("file type must be specified")
 	}
 
-	// Get current date in YYYY-MM-DD
-	date := time.Now().Format("2006-01-02")
+	// Check if Collected contains a date in YYYY-MM-DD format
+	if evidence.Collected != "" {
+		if _, err := time.Parse("2006-01-02", evidence.Collected); err != nil {
+			return fmt.Errorf("collected date must be in YYYY-MM-DD format, got %s", evidence.Collected)
+		}
+	} else {
+		evidence.Collected = time.Now().Format("2006-01-02")
+	}
 
 	// Open file for read
-	file, err := os.Open(fileName)
+	file, err := os.Open(evidence.FileName)
 	if err != nil {
 		return err
 	}
@@ -66,7 +79,7 @@ func (e *TBL) Upload(fileName string, fileType string, url string) error {
 	h.Set("Content-Disposition",
 		fmt.Sprintf(`form-data; name="%s"; filename="%s"`,
 			escapeQuotes("file"), escapeQuotes(filepath.Base(file.Name()))))
-	h.Set("Content-Type", fileType)
+	h.Set("Content-Type", evidence.FileType)
 
 	// Create the MIME part
 	part, err := writer.CreatePart(h)
@@ -80,7 +93,7 @@ func (e *TBL) Upload(fileName string, fileType string, url string) error {
 	}
 
 	// Add collected field
-	err = writer.WriteField("collected", date)
+	err = writer.WriteField("collected", evidence.Collected)
 	if err != nil {
 		return err
 	}

@@ -45,16 +45,31 @@ func main() {
 	// This can be a comma-delimited list of URLs if you want to upload to multiple tasks
 	url := "https://openapi.tugboatlogic.com/api/v0/evidence/collector/xxxx/"
 
-	// Upload a plain text file
-	err = t.Upload("sample.txt", "text/plain", url)
+	// Upload a plain text file using Evidence struct with empty date
+	err = t.Upload(tbl.Evidence{
+		FileName:  "sample.txt",
+		FileType:  "text/plain",
+		URL:       url,
+		Collected: "", // Empty date will use current date
+	})
 	checkError(err)
 
-	// Upload a CSV file
-	err = t.Upload("sample.csv", "text/csv", url)
+	// Upload a CSV file using Evidence struct with empty date
+	err = t.Upload(tbl.Evidence{
+		FileName:  "sample.csv",
+		FileType:  "text/csv",
+		URL:       url,
+		Collected: "", // Empty date will use current date
+	})
 	checkError(err)
 
-	// Upload an image file
-	err = t.Upload("sample.jpg", "image/jpeg", url)
+	// Upload an image file using Evidence struct with empty date
+	err = t.Upload(tbl.Evidence{
+		FileName:  "sample.jpg",
+		FileType:  "image/jpeg",
+		URL:       url,
+		Collected: "", // Empty date will use current date
+	})
 	checkError(err)
 
 	fmt.Println("TBL uploaded successfully.")
